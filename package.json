@@ -1,0 +1,41 @@
+{
+  "name": "@fullstackdb/storage",
+  "version": "0.0.1",
+  "description": "package for easy work with web storages",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec",
+    "build": "babel src/main.js --out-file index.js",
+    "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fullstackdb/storage"
+  },
+  "keywords": [
+    "storage",
+    "web storage",
+    "localstorage",
+    "sessionstorage",
+    "indexed db"
+  ],
+  "author": "fullstackdb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fullstackdb/storage/issues"
+  },
+  "homepage": "https://github.com/fullstackdb/storage#readme",
+  "engines": {
+    "node": ">=4.2.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-babili": "0.0.12",
+    "babel-preset-es2015": "^6.24.0",
+    "babili": "0.0.12",
+    "chai": "^3.5.0",
+    "coveralls": "^2.13.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0"
+  }
+}
