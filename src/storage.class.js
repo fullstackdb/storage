@@ -1,65 +1,4 @@
-class LocalStorage {
-    isActive() {
-        return window.localStorage ? true : false;
-    }
-
-    setData(name, data) {
-        return new Promise((resolve, reject) => {
-            window.localStorage.setItem(name, JSON.stringify(data));
-            resolve(`data ${name} saved`);
-        });
-    }
-
-    getData(name) {
-        return new Promise((resolve, reject) => {
-            let data  = window.localStorage.getItem(name);
-            if(data) {
-                resolve(JSON.parse(data));
-            } else {
-                reject(`data ${name} not found`)
-            }
-        });
-    }
-
-    getAll(nameList) {
-        return new Promise((resolve, reject) => {
-            if(nameList && nameList.length) {   
-                    let dataList = [];
-                    nameList.map((name) => {
-                        this.getData(name).then(
-                            (data) => {
-                                dataList.push(data);
-                            }, 
-                            (err) => {
-                                dataList.push(null);
-                        })
-                    });
-                    if(dataList.length === nameList.length) {
-                        resolve(dataList);
-                    }
-            } else {
-                reject(`[Storage] Cannot fetch data with ${nameList ? 'empty' : 'not valid'} keys array`);
-            }
-        })
-    }
-
-    getPartByKey(name, key) {
-        return new Promise((resolve, reject) => {
-                this.getData(name).then((data) => {
-                    if (data[key]) {
-                        resolve(data);
-                    } else {
-                        reject(`[Storage] Cannot fetch data. Have no ${key} in ${name}`)
-                    }
-                })
-        });
-    }
-}
-
-
-const STORAGES = [LocalStorage];
-
-class Storage {
+export class Storage {
 
     set activeStorage(storage) {
         this._activeStorage = storage;
@@ -137,10 +76,4 @@ class Storage {
                                 You sent no  ${name ? (key ? 'searchText' : 'key') : 'name' }`);
         }
     }
-
 }
-
-
-export default function() {
-    return new Storage(STORAGES);
-};
